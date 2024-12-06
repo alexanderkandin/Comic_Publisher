@@ -2,7 +2,7 @@ import telegram
 import os
 import random
 import requests
-import asyncio
+import time
 
 
 from dotenv import load_dotenv
@@ -31,7 +31,7 @@ def get_random_comics(total_comics):
     return image_url, comment, file_name
 
 
-async def main():
+def main():
     load_dotenv()
     tg_api_key = os.getenv("TELEGRAM_API_KEY")
     bot = telegram.Bot(token=tg_api_key)
@@ -45,14 +45,14 @@ async def main():
 
     file_path = os.path.join(directory, f'{file_name}.png')
     with open(file_path, "rb") as file:
-        await bot.send_document(chat_id=tg_chat_id, document=file)
-        await bot.send_message(chat_id=tg_chat_id,text=comment)
+        bot.send_document(chat_id=tg_chat_id, document=file)
+        bot.send_message(chat_id=tg_chat_id,text=comment)
 
 
-    await asyncio.sleep(1)
+    time.sleep(1)
     if os.path.exists(file_path):
         os.remove(file_path)
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()
