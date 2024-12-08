@@ -52,7 +52,6 @@ def main():
             bot.send_message(chat_id=tg_chat_id,text=comment)
 
     finally:
-        time.sleep(1)
         if os.path.exists(save_path):
             os.remove(save_path)
 
