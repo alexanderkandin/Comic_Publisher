@@ -43,17 +43,18 @@ def main():
     image_url, comment, file_name = get_random_comics(total_comics)
     save_path = os.path.join(os.getcwd(), directory, f'{file_name}.png')
     os.makedirs(os.path.dirname(save_path), exist_ok=True)
-    download_image(image_url, save_path)
 
-    file_path = os.path.join(directory, f'{file_name}.png')
-    with open(file_path, "rb") as file:
-        bot.send_document(chat_id=tg_chat_id, document=file)
-        bot.send_message(chat_id=tg_chat_id,text=comment)
+    try:
+        download_image(image_url, save_path)
 
+        with open(save_path, "rb") as file:
+            bot.send_document(chat_id=tg_chat_id, document=file)
+            bot.send_message(chat_id=tg_chat_id,text=comment)
 
-    time.sleep(1)
-    if os.path.exists(file_path):
-        os.remove(file_path)
+    finally:
+        time.sleep(1)
+        if os.path.exists(save_path):
+            os.remove(save_path)
 
 
 if __name__ == "__main__":
