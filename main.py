@@ -49,7 +49,8 @@ def main():
 
         with open(save_path, "rb") as file:
             bot.send_document(chat_id=tg_chat_id, document=file)
-            bot.send_message(chat_id=tg_chat_id,text=comment)
+
+        bot.send_message(chat_id=tg_chat_id, text=comment)
 
     finally:
         if os.path.exists(save_path):
