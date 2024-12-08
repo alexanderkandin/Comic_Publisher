@@ -33,9 +33,9 @@ def get_random_comics(total_comics):
 
 def main():
     load_dotenv()
-    tg_api_key = os.getenv("TELEGRAM_API_KEY")
+    tg_api_key = os.environ["TELEGRAM_API_KEY"]
     bot = telegram.Bot(token=tg_api_key)
-    tg_chat_id = os.getenv("TG_CHAT_ID")
+    tg_chat_id = os.environ["TG_CHAT_ID"]
     directory = 'images'
 
     url = "https://xkcd.com/info.0.json"
