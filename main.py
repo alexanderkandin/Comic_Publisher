@@ -2,7 +2,6 @@ import telegram
 import os
 import random
 import requests
-import time
 
 
 from dotenv import load_dotenv
