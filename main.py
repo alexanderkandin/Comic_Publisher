@@ -41,7 +41,9 @@ def main():
     url = "https://xkcd.com/info.0.json"
     total_comics = get_total_comics(url)
     image_url, comment, file_name = get_random_comics(total_comics)
-    download_image(image_url, directory, f'{file_name}.png')
+    save_path = os.path.join(os.getcwd(), directory, f'{file_name}.png')
+    os.makedirs(os.path.dirname(save_path), exist_ok=True)
+    download_image(image_url, save_path)
 
     file_path = os.path.join(directory, f'{file_name}.png')
     with open(file_path, "rb") as file:
