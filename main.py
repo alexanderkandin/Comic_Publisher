@@ -3,9 +3,7 @@ import os
 import random
 import requests
 
-
 from dotenv import load_dotenv
-
 from download import download_image
 
 
@@ -16,8 +14,9 @@ def get_total_comics(url):
     total_comics = comics.get('num')
     return total_comics
 
+
 def get_random_comics(total_comics):
-    random_comic = random.randint(1,int(total_comics))
+    random_comic = random.randint(1, int(total_comics))
 
     random_comic_url = f"https://xkcd.com/{random_comic}/info.0.json"
 
